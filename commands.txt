@@ -1,5 +1,13 @@
-jq -c -r ".[]" data.json | while read line; do echo '{"index":{}}'; echo $line; done > bulk_data.json
+## This follwing command will convert List of json data to readable ndjson data for elastic search.
 
-docker build -t elastic-search-automated:latest .
-docker run -p 9200:9200 -e "discovery.type=single-node" elastic-search-automated:latest
+1. jq -c -r ".[]" data.json | while read line; do echo '{"index":{}}'; echo $line; done > bulk_data.json
+
+## This will build the docker file and will create an docker image for Elastic Search 
+
+2. docker build -t elastic-search-automated:latest .
+
+
+## This command will run the elastic-search image
+
+3. docker run -p 9200:9200 -e "discovery.type=single-node" elastic-search-automated:latest
 
