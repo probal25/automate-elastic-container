@@ -7,7 +7,7 @@ ENV discovery.type 'single-node'
 ENV bootstrap.memory_lock 'true'
 RUN echo 'vm.max_map_count=262144' >> /etc/sysctl.conf
 
-ADD preload.sh template.json /
+ADD preload.sh index.json bulk_data.json /
 
 RUN /usr/local/bin/docker-entrypoint.sh elasticsearch -d -E path.data=/tmp/data \
     && while [[ "$(curl -s -o /dev/null -w '%{http_code}' localhost:9200)" != "200" ]]; do sleep 1; done \
