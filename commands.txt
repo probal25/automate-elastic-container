@@ -1,0 +1,5 @@
+jq -c -r ".[]" data.json | while read line; do echo '{"index":{}}'; echo $line; done > bulk_data.json
+
+docker build -t elastic-search-automated:latest .
+docker run -p 9200:9200 -e "discovery.type=single-node" elastic-search-automated:latest
+

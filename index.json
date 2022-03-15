@@ -1,0 +1,35 @@
+{
+  "settings": {
+    "index": {
+      "number_of_shards": 1,
+      "number_of_replicas": 1
+    },
+    "analysis": {
+      "analyzer": {
+        "analyzer-name": {
+          "type": "custom",
+          "tokenizer": "keyword",
+          "filter": "lowercase"
+        }
+      }
+    }
+  },
+  "mappings": {
+    "properties": {
+      "employee": {
+        "properties": {
+          "age": {
+            "type": "long"
+          },
+          "experience": {
+            "type": "long"      
+          },
+          "name": {
+            "type": "text",
+            "analyzer": "analyzer-name"
+          }
+        }
+      }
+    }
+  }
+}
